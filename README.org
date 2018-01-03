@@ -1,3 +1,5 @@
+* Using Raspberry Pi to control Mindstorms NXT brick
+
 * bluetooth connection
 
 ** rpi 3 has bluetooth built in
