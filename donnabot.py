@@ -1,4 +1,6 @@
 # script to control donna's "I love you" bot
+#
+# orginally based on examples from nxt-python/examples
 
 ID = '00:16:53:17:52:EE'
 
@@ -17,17 +19,27 @@ my = nxt.Motor(b, nxt.PORT_B) # right-side
 touch = nxt.Touch(b,nxt.PORT_1)
 ultrasonic = nxt.Ultrasonic(b,nxt.PORT_2)
 
-class Drive(object):
+b.close()
 
+class Drive(object):
+    """
+    This class is designed to drive a carriage with wheels driven by motors on the 
+    left and right side. 
+
+    We wish to drive the carriage by specifying distance. 
+    """
+    
     left_motor = None
     right_motor = None
     
     def __init__(self,left_motor,right_motor):
-
+        """
+        input motors on left and right side. These are of type nxt.Motor
+        """
         self.left_motor = left_motor
         self.right_motor = right_motor
         
-    def straight(self,delta_time):
+    def forward(self,delta_time):
 
        	self.left_motor.run(regulated=True)
         self.right_motor.run(regulated=True)
@@ -35,4 +47,4 @@ class Drive(object):
         self.left_motor.idle()
         self.right_motor.idle()
 
-b.close()
+
