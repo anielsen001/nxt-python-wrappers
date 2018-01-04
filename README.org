@@ -78,13 +78,17 @@ https://github.com/Eelviny/nxt-python/tree/master
 Must use python 2 and tag v2.2.2 do not use master branch to build
 Will not work with python3
 
-use: git checkout v2.2.2
+#+BEGIN_SRC
+git checkout v2.2.2
+#+END_SRC
 
 ** test if things work
 
 https://onegoodapp.wordpress.com/2013/07/02/raspberry-pi-model-b-setup-to-communicate-with-nxt/
 
+#+BEGIN_SRC
 wget http://home.wlu.edu/~levys/courses/csci250s2013/nxt_beep.py
+#+END_SRC
 
 run python nxt_beep.py and the nxt should beep if things work.
 I had to turn on the volume on the nxt brick first.
