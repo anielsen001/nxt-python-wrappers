@@ -3,6 +3,14 @@ import nxt, thread, time
 
 class Drive(object):
 
+    # the methods currently run for a specified period of time and
+    # power. They cannot be easily calibrated for distance or angle
+    # the Motor.turn() methods can help with that, with constructs like:
+    # d.synchroMotor.turn(power=-100,tacho_units=360)
+    # or
+    # d.rightMotor.turn(power=100,tacho_units = 180)
+    # for these motors, tacho_units are degrees
+
     # define two motor objects on the left and right side of carriage
     leftMotor = None
     rightMotor = None
@@ -33,6 +41,7 @@ class Drive(object):
 
         self.synchroMotor.run(power=power)
         time.sleep(delta_time)
+        # use of brake vice idle causes hardstop instead of glide to stop
         #self.synchroMotor.idle()
         self.synchroMotor.brake()
         
