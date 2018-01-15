@@ -1,26 +1,37 @@
 * Using Raspberry Pi to control Mindstorms NXT brick
 
+  The project attempts to create a simple LEGO Mindstorm contoller programmed with python and using a Raspberry Pi.
+
+  We use a bluetooth connecton becuase it's wireless.
+
 * bluetooth connection
 
 ** rpi 3 has bluetooth built in
 
-  install bluetooth libraries
+Install bluetooth libraries and software
 
+I found these instructions
 https://gist.github.com/lexruee/fa2e55aab4380cf266fb
 
+#+BEGIN_SRC 
 sudo apt-get update
 sudo apt-get install python-pip python-dev ipython
 
 sudo apt-get install bluetooth libbluetooth-dev
 sudo pip install pybluez
 
-  sudo apt install bluez*
+sudo apt install bluez*
+#+END_SRC
 
 ** pair the NXT mindstorm device 
 
+#+BEGIN_SRC
 sudo bluetoothctl -a
+#+END_SRC
 
 *** Do this to search for the device:
+
+#+BEGIN_SRC
 [bluetooth]# scan on
 Discovery started
 [CHG] Controller B8:27:EB:84:19:D6 Discovering: yes
@@ -28,17 +39,21 @@ Discovery started
 [CHG] Device 00:16:53:17:52:EE LegacyPairing: no
 [CHG] Device 00:16:53:17:52:EE Name: JAWS
 [CHG] Device 00:16:53:17:52:EE Alias: JAWS
+#+END_SRC
 
 *** Do this to pair the device once the ID is found
+
+#+BEGIN_SRC
 [bluetooth]# pair 00:16:53:17:52:EE 
 Attempting to pair with 00:16:53:17:52:EE
 Failed to pair: org.bluez.Error.AuthenticationTimeout
+#+END_SRC
 
 *** Look at NXT screen for code and press the orange button 
 
     acknowledge, use that code to pair.
 
-
+#+BEGIN_SRC
 [bluetooth]# pair 00:16:53:17:52:EE 
 Attempting to pair with 00:16:53:17:52:EE
 Request PIN code
@@ -52,6 +67,7 @@ Pairing successful
 [CHG] Device 00:16:53:17:52:EE Connected: no
 [CHG] Device 00:16:53:17:52:EE RSSI: -51
 [CHG] Device 00:16:53:17:52:EE RSSI: -36
+#+END_SRC
 
 * set up python software
 
@@ -59,16 +75,20 @@ Pairing successful
    
 https://github.com/Eelviny/nxt-python/tree/master
 
-must use python 2 and tag v2.2.2 do not use master branch to build
-will not work with python3
+Must use python 2 and tag v2.2.2 do not use master branch to build
+Will not work with python3
 
-use: git checkout v2.2.2
+#+BEGIN_SRC
+git checkout v2.2.2
+#+END_SRC
 
 ** test if things work
 
 https://onegoodapp.wordpress.com/2013/07/02/raspberry-pi-model-b-setup-to-communicate-with-nxt/
 
+#+BEGIN_SRC
 wget http://home.wlu.edu/~levys/courses/csci250s2013/nxt_beep.py
+#+END_SRC
 
 run python nxt_beep.py and the nxt should beep if things work.
 I had to turn on the volume on the nxt brick first.

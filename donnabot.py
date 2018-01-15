@@ -1,4 +1,6 @@
 # script to control donna's "I love you" bot
+#
+# orginally based on examples from nxt-python/examples
 
 ID = '00:16:53:17:52:EE'
 
