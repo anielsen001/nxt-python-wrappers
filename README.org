@@ -1,10 +1,11 @@
-* Using Raspberry Pi to control Mindstorms NXT brick
+* Use Raspberry Pi to control LEGO Mindstorms NXT brick with python
 
   The project attempts to create a simple LEGO Mindstorm contoller programmed with python and using a Raspberry Pi.
 
   We use a bluetooth connecton becuase it's wireless.
 
-* bluetooth connection
+* Establish bluetooth connection between RPi and NXT
+
 
 ** rpi 3 has bluetooth built in
 
@@ -43,7 +44,10 @@ Discovery started
 
 *** Do this to pair the device once the ID is found
 
+<<<<<<< Updated upstream
 #+BEGIN_SRC
+=======
+>>>>>>> Stashed changes
 [bluetooth]# pair 00:16:53:17:52:EE 
 Attempting to pair with 00:16:53:17:52:EE
 Failed to pair: org.bluez.Error.AuthenticationTimeout
