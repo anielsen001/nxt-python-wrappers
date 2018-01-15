@@ -71,4 +71,36 @@ class Drive(object):
         self.leftMotor.brake()
         self.rightMotor.brake()
 
-    
+    def turnOut(self,delta_time,turnLeft=True,power=100):
+        """
+        rotate the carriage by braking one wheel and turning
+        the opposite so that the carriage turns out from its 
+        track
+        """
+        if turnLeft:
+            self.rightMotor.run( power = power )
+            self.leftMotor.brake()
+        else:
+            self.rightMotor.brake()
+            self.leftMotor.run( power = power )
+
+        time.sleep(delta_time)
+        self.leftMotor.brake()
+        self.rightMotor.brake()
+        
+    def turnIn(self,delta_time,turnLeft=True,power=100):
+        """
+        rotate the carriage by braking one wheel and turning
+        the opposite so that the carriage turns into its track
+        """
+        if turnLeft:
+            self.rightMotor.brake()
+            self.leftMotor.run( power = -power )
+        else:
+            self.rightMotor.run( power = -power )
+            self.leftMotor.brake()
+
+        time.sleep(delta_time)
+        self.leftMotor.brake()
+        self.rightMotor.brake()
+            
