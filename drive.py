@@ -50,3 +50,25 @@ class Drive(object):
 
         self.straight(delta_time,power=-np.abs(power))
     
+
+    def turnInPlace(self,delta_time,turnLeft=True,power=100):
+        """
+        rotate the carriage by turning each motor in opposite 
+        directions at the same rate
+        """
+        if turnLeft:
+            # left turn - counter-clockwise as seen from above
+
+            self.leftMotor.run(power = -power)
+            self.rightMotor.run(power = power)
+                       
+        else:
+            # right turn - clockwise as seen from above
+            self.leftMotor.run(power = power)
+            self.rightMotor.run(power = -power)
+
+        time.sleep(delta_time)
+        self.leftMotor.brake()
+        self.rightMotor.brake()
+
+    
