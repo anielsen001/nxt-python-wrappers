@@ -1,6 +1,6 @@
-* Using Raspberry Pi to control Mindstorms NXT brick
+* Use Raspberry Pi to control LEGO Mindstorms NXT brick with python
 
-* bluetooth connection
+* Establish bluetooth connection between RPi and NXT
 
 ** rpi 3 has bluetooth built in
 
@@ -21,6 +21,8 @@ sudo pip install pybluez
 sudo bluetoothctl -a
 
 *** Do this to search for the device:
+
+#+BEGIN_SRC
 [bluetooth]# scan on
 Discovery started
 [CHG] Controller B8:27:EB:84:19:D6 Discovering: yes
@@ -28,8 +30,10 @@ Discovery started
 [CHG] Device 00:16:53:17:52:EE LegacyPairing: no
 [CHG] Device 00:16:53:17:52:EE Name: JAWS
 [CHG] Device 00:16:53:17:52:EE Alias: JAWS
+#+END_SRC
 
 *** Do this to pair the device once the ID is found
+
 [bluetooth]# pair 00:16:53:17:52:EE 
 Attempting to pair with 00:16:53:17:52:EE
 Failed to pair: org.bluez.Error.AuthenticationTimeout
