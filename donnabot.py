@@ -8,7 +8,7 @@ import nxt, thread, time
 
 import numpy as np
 
-import donnabot
+import drive
 
 # this find_one_brick method is unreliable
 #b = nxt.find_one_brick(host=ID)
@@ -20,7 +20,7 @@ b=sock.connect()
 mx = nxt.Motor(b, nxt.PORT_A) # left-side
 my = nxt.Motor(b, nxt.PORT_B) # right-side
 
-d = donnabot.Drive(mx,my)
+d = drive.Drive(mx,my)
 
 touch = nxt.Touch(b,nxt.PORT_1)
 ultrasonic = nxt.Ultrasonic(b,nxt.PORT_2)
