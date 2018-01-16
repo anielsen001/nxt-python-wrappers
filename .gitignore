@@ -1,0 +1,7 @@
+# compilation products
+*.pyc
+
+# emacs backup files
+*~
+\#*\#
+
