@@ -8,7 +8,8 @@
 # and
 # https://stackoverflow.com/questions/19370622/pygame-simple-bouncing-animation
 #
-#
+# key press info here:
+# https://stackoverflow.com/questions/16044229/how-to-get-keyboard-input-in-pygame
 
 
 import pygame
@@ -47,7 +48,11 @@ def game_loop():
                 return None
                 #quit()
             if event.type == pygame.KEYDOWN:
-                print "keydown"    
+                print "keydown"
+                if event.key == pygame.K_LEFT:
+                    print "turn left pressed"
+                if event.key == pygame.K_RIGHT:
+                    print "turn right pressed"
             if event.type == pygame.KEYUP:
                 print "keyup"
    
