@@ -29,38 +29,45 @@ class Drive(object):
         self.synchroMotor = nxt.motor.SynchronizedMotors(left_motor,
                                                          right_motor,
                                                          turnRatio)
-        
-    def straight(self,delta_time,power=100):
+
+    def brakeAll(self):
+        """
+        brake all motors
+        """
+        self.synchroMotor.brake()
+    
+    def straight(self,delta_time=None,power=100):
         """
         drive the motors together
 
-        delta_time is how long to drive
+        delta_time is how long to drive None runs continuously
         power > 0 goes forward
         power < 0 goes reverse
         """
 
         self.synchroMotor.run(power=power)
-        time.sleep(delta_time)
-        # use of brake vice idle causes hardstop instead of glide to stop
-        #self.synchroMotor.idle()
-        self.synchroMotor.brake()
+        if delta_time is not None:
+            time.sleep(delta_time)
+            # use of brake vice idle causes hardstop instead of glide to stop
+            #self.synchroMotor.idle()
+            self.synchroMotor.brake()
         
-    def forward(self,delta_time,power=100):
+    def forward(self,delta_time=None,,power=100):
         """
         drive the motors forward
         """
+        
+        self.straight(delta_time=delta_time,power=np.abs(power))
 
-        self.straight(delta_time,power=np.abs(power))
-
-    def reverse(self,delta_time,power=100):
+    def reverse(self,delta_time=None,power=100):
         """
         drive the motors reverse
         """
 
-        self.straight(delta_time,power=-np.abs(power))
+        self.straight(delta_time=delta_time,power=-np.abs(power))
     
 
-    def turnInPlace(self,delta_time,turnLeft=True,power=100):
+    def turnInPlace(self,delta_time=None,turnLeft=True,power=100):
         """
         rotate the carriage by turning each motor in opposite 
         directions at the same rate
@@ -76,11 +83,12 @@ class Drive(object):
             self.leftMotor.run(power = power)
             self.rightMotor.run(power = -power)
 
-        time.sleep(delta_time)
-        self.leftMotor.brake()
-        self.rightMotor.brake()
+        if delta_time is not None:
+            time.sleep(delta_time)
+            self.leftMotor.brake()
+            self.rightMotor.brake()
 
-    def turnOut(self,delta_time,turnLeft=True,power=100):
+    def turnOut(self,delta_time=None,turnLeft=True,power=100):
         """
         rotate the carriage by braking one wheel and turning
         the opposite so that the carriage turns out from its 
@@ -93,11 +101,12 @@ class Drive(object):
             self.rightMotor.brake()
             self.leftMotor.run( power = power )
 
-        time.sleep(delta_time)
-        self.leftMotor.brake()
-        self.rightMotor.brake()
+        if delta_time is not None:
+            time.sleep(delta_time)
+            self.leftMotor.brake()
+            self.rightMotor.brake()
         
-    def turnIn(self,delta_time,turnLeft=True,power=100):
+    def turnIn(self,delta_time=None,turnLeft=True,power=100):
         """
         rotate the carriage by braking one wheel and turning
         the opposite so that the carriage turns into its track
@@ -109,7 +118,10 @@ class Drive(object):
             self.rightMotor.run( power = -power )
             self.leftMotor.brake()
 
-        time.sleep(delta_time)
-        self.leftMotor.brake()
-        self.rightMotor.brake()
+        if delta_time is not None:
+            time.sleep(delta_time)
+            self.leftMotor.brake()
+            self.rightMotor.brake()
+
+        
             
