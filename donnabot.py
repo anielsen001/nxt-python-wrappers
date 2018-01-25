@@ -33,4 +33,5 @@ marm = nxt.Motor(b2, nxt.PORT_C) # arm motor
 touch = nxt.Touch(b1,nxt.PORT_1)
 ultrasonic = nxt.Ultrasonic(b1,nxt.PORT_2)
 
-b.close()
+b1.close()
+b2.close()
