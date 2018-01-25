@@ -143,16 +143,19 @@ class Drive(object):
 
             self.leftMotor.run(power = -power)
             self.rightMotor.run(power = power)
+            self.setState( TURN_IN_LEFT )
                        
         else:
             # right turn - clockwise as seen from above
             self.leftMotor.run(power = power)
             self.rightMotor.run(power = -power)
+            self.setState( TURN_IN_RIGHT )
 
         if delta_time is not None:
             time.sleep(delta_time)
             self.leftMotor.brake()
             self.rightMotor.brake()
+            self.setState( STOP )
 
     def turnOut(self,delta_time=None,turnLeft=True,power=100):
         """
@@ -163,14 +166,17 @@ class Drive(object):
         if turnLeft:
             self.rightMotor.run( power = power )
             self.leftMotor.brake()
+            self.setState( TURN_OUT_LEFT )
         else:
             self.rightMotor.brake()
             self.leftMotor.run( power = power )
+            self.setState( TURN_OUT_RIGHT )
 
         if delta_time is not None:
             time.sleep(delta_time)
             self.leftMotor.brake()
             self.rightMotor.brake()
+            self.setState( STOP )
         
     def turnIn(self,delta_time=None,turnLeft=True,power=100):
         """
@@ -180,14 +186,17 @@ class Drive(object):
         if turnLeft:
             self.rightMotor.brake()
             self.leftMotor.run( power = -power )
+            self.setState( TURN_IN_LEFT )
         else:
             self.rightMotor.run( power = -power )
             self.leftMotor.brake()
+            self.setState( TURN_IN_RIGHT )
 
         if delta_time is not None:
             time.sleep(delta_time)
             self.leftMotor.brake()
             self.rightMotor.brake()
+            self.setState( STOP )
 
         
             
