@@ -48,7 +48,8 @@ KEY_LOCK = None
 def drive_loop():
 
     running = True
-
+    KEY_LOCK = None
+    
     while running:
 
         for event in pygame.event.get():
@@ -64,23 +65,23 @@ def drive_loop():
             if event.type == pygame.KEYDOWN and not KEY_LOCK :
                 # only look at another KEYDOWN event if the
                 # KEY_LOCK  is not set
-                if event.key == pygame.K_UP or \
-                   event.key == pygame.K_W : 
+                if event.key == pygame.K_UP or\
+                   event.key == pygame.K_w : 
                     # move forward 
                     d.forward()
                     
                 if event.key == pygame.K_DOWN or\
-                   event.key == pygame.K_S : 
+                   event.key == pygame.K_s : 
                     # move reverse
                     d.reverse()
                 
                 if event.key == pygame.K_LEFT or\
-                   event.key == pygame.K_A :
+                   event.key == pygame.K_a :
                     # turn left
                     d.turnInPlace(turnLeft = True)
                     
                 if event.key == pygame.K_RIGHT or\
-                   event.key == pygame.K_D :
+                   event.key == pygame.K_d :
                     # turn right
                     d.turnInPlace(turnLeft = False)
 
@@ -97,9 +98,9 @@ def drive_loop():
                 
    
         # DRAW
-        window.fill(white)
-        pygame.draw.rect(window, black, [pos_x, pos_y, block_size, block_size])
-        pygame.display.update()
+        #window.fill(white)
+        #pygame.draw.rect(window, black, [pos_x, pos_y, block_size, block_size])
+        #pygame.display.update()
         clock.tick(FPS)
 
 
