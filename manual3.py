@@ -11,7 +11,7 @@
 # key press info here:
 # https://stackoverflow.com/questions/16044229/how-to-get-keyboard-input-in-pygame
 
-from future import __print_function__
+from __future__ import print_function
 
 import nxt, thread, time
 import numpy as np

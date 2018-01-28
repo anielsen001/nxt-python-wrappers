@@ -21,7 +21,7 @@ TURN_PLACE_RIGHT = 8
 MIN_POWER = 64
 MAX_POWER = 127
 
-class DriveError(exception):
+class DriveError(Exception):
     """
     Errors associated with the drive system
     """
@@ -62,12 +62,12 @@ class Drive(object):
         # on init, idle all the drive motors
         self.idle()
 
-    def setState(state):
+    def setState(self,state):
         """ set the state of the drive system. returns the state """
         self._state = state
         return self._state
 
-    def getState(state):
+    def getState(self,state):
         """ return the state of the drive system """
         return self._state
 
@@ -118,7 +118,7 @@ class Drive(object):
             #self.synchroMotor.idle()
             self.brakeAll()
         
-    def forward(self,delta_time=None,,power=100):
+    def forward(self,delta_time=None,power=100):
         """
         drive the motors forward
         """
