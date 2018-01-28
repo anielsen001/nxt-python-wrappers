@@ -43,13 +43,12 @@ pygame.display.set_caption("DonnaBot: ")
 clock = pygame.time.Clock()
 
 # set a lock on key presses to the key that's locked
-KEY_LOCK = None
 
 def drive_loop():
 
     running = True
     KEY_LOCK = None
-    
+
     while running:
 
         for event in pygame.event.get():
@@ -63,27 +62,42 @@ def drive_loop():
             # before the next key down will do anything
                 
             if event.type == pygame.KEYDOWN and not KEY_LOCK :
+                
+                # determine which modifier keys are set
+                modkeys = pygame.key.get_mods()
+                if modkeys & pygame.KMOD_SHIFT :
+                    # run slow
+                    power = drive.MIN_POWER
+                elif modkeys & pygame.KMOD_CTRL :
+                    # run fast
+                    power = drive.MAX_POWER
+                else:
+                    # run normal
+                    power = 100
+                    
                 # only look at another KEYDOWN event if the
                 # KEY_LOCK  is not set
                 if event.key == pygame.K_UP or\
-                   event.key == pygame.K_w : 
+                   event.key == pygame.K_w :
                     # move forward 
-                    d.forward()
+                    d.forward(power=power)
                     
                 if event.key == pygame.K_DOWN or\
                    event.key == pygame.K_s : 
                     # move reverse
-                    d.reverse()
+                    d.reverse(power=power)
                 
                 if event.key == pygame.K_LEFT or\
                    event.key == pygame.K_a :
                     # turn left
-                    d.turnInPlace(turnLeft = True)
+                    d.turnInPlace(turnLeft = True,\
+                                  power = power)
                     
                 if event.key == pygame.K_RIGHT or\
                    event.key == pygame.K_d :
                     # turn right
-                    d.turnInPlace(turnLeft = False)
+                    d.turnInPlace(turnLeft = False,\
+                                  power = power)
 
                 # set KEY_LOCK to key that was pressed
                 KEY_LOCK = event.key
