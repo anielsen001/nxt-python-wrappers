@@ -49,6 +49,8 @@ def drive_loop():
     running = True
     KEY_LOCK = None
 
+    power = 100
+
     while running:
 
         for event in pygame.event.get():
@@ -60,14 +62,18 @@ def drive_loop():
 
             # every key down must be followed by a release key up
             # before the next key down will do anything
-                
+
+            
             if event.type == pygame.KEYDOWN and not KEY_LOCK :
-                
+
+                # shift and control count at KEYDOWN events as well
+                # as modifier keys
                 # determine which modifier keys are set
                 modkeys = pygame.key.get_mods()
                 if modkeys & pygame.KMOD_SHIFT :
                     # run slow
-                    power = drive.MIN_POWER
+                    #power = drive.MIN_POWER
+                    power = 75
                 elif modkeys & pygame.KMOD_CTRL :
                     # run fast
                     power = drive.MAX_POWER
@@ -77,30 +83,32 @@ def drive_loop():
                     
                 # only look at another KEYDOWN event if the
                 # KEY_LOCK  is not set
+                print('power = ' + str(power))
                 if event.key == pygame.K_UP or\
                    event.key == pygame.K_w :
                     # move forward 
                     d.forward(power=power)
+                    KEY_LOCK = event.key
                     
                 if event.key == pygame.K_DOWN or\
                    event.key == pygame.K_s : 
                     # move reverse
                     d.reverse(power=power)
+                    KEY_LOCK = event.key
                 
                 if event.key == pygame.K_LEFT or\
                    event.key == pygame.K_a :
                     # turn left
                     d.turnInPlace(turnLeft = True,\
                                   power = power)
+                    KEY_LOCK = event.key
                     
                 if event.key == pygame.K_RIGHT or\
                    event.key == pygame.K_d :
                     # turn right
                     d.turnInPlace(turnLeft = False,\
                                   power = power)
-
-                # set KEY_LOCK to key that was pressed
-                KEY_LOCK = event.key
+                    KEY_LOCK = event.key
                                        
             if event.type == pygame.KEYUP:
                 
@@ -120,4 +128,4 @@ def drive_loop():
 
 if __name__=='__main__':
     drive_loop()
-    b1.close()
+    b1.close() # this fails
