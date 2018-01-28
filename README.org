@@ -95,7 +95,7 @@ https://rebeccaajones.wordpress.com/2013/06/19/raspberry-pi-robotics-part-1-pi-c
 http://www.nxtprograms.com/castor_bot/steps.html
 http://www.raspberry-pi-geek.com/Archive/2015/10/Build-cool-stuff-with-Lego-and-Pi
 
-* pygame for control
+* pygame for manual control
 
 pygame can be installed with pip but sdl must be installed first
 
