@@ -81,7 +81,7 @@ class Drive(object):
         brake all motors
         """
         self.synchroMotor.brake()
-        self.setState( STOP )
+        self.setState( BRAKE )
     
     def straight(self,delta_time=None,power=100):
         """
